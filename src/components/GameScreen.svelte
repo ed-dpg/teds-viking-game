@@ -12,15 +12,22 @@
     language: Language;
     onGuess: (option: VikingThing) => void;
     onNext: () => void;
+    onExit: () => void;
   };
 
-  let { round, roundNumber, totalRounds, totalScore, language, onGuess, onNext }: Props = $props();
+  let { round, roundNumber, totalRounds, totalScore, language, onGuess, onNext, onExit }: Props = $props();
 
   let muted = $state(isMuted());
 
   function toggleMute() {
     muted = !muted;
     setMuted(muted);
+  }
+
+  function handleExit() {
+    if (confirm('Exit to menu? Your current game will be lost.')) {
+      onExit();
+    }
   }
 
   function displayName(thing: VikingThing): string {
@@ -53,9 +60,17 @@
     <span class="counter">Round {roundNumber} / {totalRounds}</span>
     <span class="score">Score: {totalScore}</span>
     <span class="attempts" aria-label="Attempts used">{attemptDots}</span>
+    <button type="button" class="icon-btn" aria-label="Exit to menu" onclick={handleExit}>
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+        />
+      </svg>
+    </button>
     <button
       type="button"
-      class="mute"
+      class="icon-btn"
       aria-label={muted ? 'Unmute sound' : 'Mute sound'}
       aria-pressed={muted}
       onclick={toggleMute}
@@ -142,7 +157,7 @@
     letter-spacing: 0.2em;
     color: var(--gold);
   }
-  button.mute {
+  button.icon-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -153,13 +168,13 @@
     color: var(--bg-parchment);
     line-height: 0;
   }
-  button.mute:hover:not(:disabled) {
+  button.icon-btn:hover:not(:disabled) {
     background: transparent;
     border-color: var(--gold);
     color: var(--gold);
     transform: none;
   }
-  button.mute[aria-pressed='true'] {
+  button.icon-btn[aria-pressed='true'] {
     color: var(--iron);
   }
   .game-body {

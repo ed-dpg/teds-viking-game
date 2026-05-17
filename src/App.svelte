@@ -92,6 +92,7 @@
       language={game.config.language}
       onGuess={handleGuess}
       onNext={handleNext}
+      onExit={playAgain}
     />
   {:else if phase === 'end' && game}
     <EndScreen rounds={game.rounds} totalScore={game.totalScore} onPlayAgain={playAgain} />
