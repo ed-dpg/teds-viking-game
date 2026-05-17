@@ -1,4 +1,4 @@
-import type { Attempt, VikingThing } from './types';
+import type { Attempt, GameConfig, Round, VikingThing } from './types';
 
 export function shuffle<T>(arr: T[], rng: () => number = Math.random): T[] {
   const out = [...arr];
@@ -38,4 +38,34 @@ export function pickDistractors(
     }
   }
   return picked;
+}
+
+function randomInRange(min: number, max: number, rng: () => number): number {
+  return min + rng() * (max - min);
+}
+
+export function buildRounds(
+  config: GameConfig,
+  pool: VikingThing[],
+  rng: () => number = Math.random,
+): Round[] {
+  const answerCount = Math.min(config.roundCount, pool.length);
+  const answers = shuffle(pool, rng).slice(0, answerCount);
+
+  return answers.map((answer): Round => {
+    const distractors = pickDistractors(answer, pool, config.optionCount, rng);
+    const options = shuffle([answer, ...distractors], rng);
+    return {
+      answer,
+      options,
+      focal: {
+        x: randomInRange(25, 75, rng),
+        y: randomInRange(25, 75, rng),
+      },
+      attempt: 1,
+      picked: [],
+      result: 'pending',
+      pointsEarned: 0,
+    };
+  });
 }
