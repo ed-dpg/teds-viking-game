@@ -14,7 +14,6 @@
   // svelte-ignore state_referenced_locally
   let optionCount = $state(initialConfig.optionCount);
 
-  let effectiveRounds = $derived(Math.min(roundCount, manifestSize));
   let cappedNote = $derived(
     roundCount > manifestSize
       ? `Only ${manifestSize} items available — that's how many rounds you'll play.`
@@ -49,7 +48,7 @@
     <p class="note">{cappedNote}</p>
   {/if}
 
-  <button class="primary" onclick={() => onBegin({ roundCount: effectiveRounds, optionCount })}>
+  <button class="primary" onclick={() => onBegin({ roundCount, optionCount })}>
     Begin
   </button>
 </section>

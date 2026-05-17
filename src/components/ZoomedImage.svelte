@@ -25,7 +25,7 @@
     {alt}
     onerror={handleError}
     style:transform-origin="{focal.x}% {focal.y}%"
-    style:transform="scale({scale}) translate({50 - focal.x}%, {50 - focal.y}%)"
+    style:transform="scale({scale})"
   />
 </div>
 
