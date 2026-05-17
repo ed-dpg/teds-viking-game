@@ -72,14 +72,17 @@
   fetchManifest();
 </script>
 
-<div class="app-shell">
+<div class="rune-shell">
   {#if phase === 'loading'}
-    <p>Loading…</p>
+    <p class="rune-caption">Loading…</p>
   {:else if phase === 'error'}
-    <section class="panel">
-      <h2>Could not load game</h2>
-      <p>{loadError}</p>
-      <button onclick={() => { playClick(); fetchManifest(); }}>Retry</button>
+    <section class="slate-panel">
+      <h2 class="rune-h2">Could not load game</h2>
+      <p class="rune-body">{loadError}</p>
+      <button
+        class="slate-tablet slate-tablet--primary"
+        onclick={() => { playClick(); fetchManifest(); }}
+      >Retry</button>
     </section>
   {:else if phase === 'start'}
     <StartScreen initialConfig={lastConfig} manifestSize={manifest.length} onBegin={beginGame} />
@@ -98,15 +101,5 @@
     <EndScreen rounds={game.rounds} totalScore={game.totalScore} onPlayAgain={playAgain} />
   {/if}
 
-  <footer>Made by Teddy B. All rights reserved.</footer>
+  <footer class="rune-footer">MADE BY TEDDY B · ALL RIGHTS RESERVED</footer>
 </div>
-
-<style>
-  footer {
-    margin-top: 3rem;
-    text-align: center;
-    font-size: 0.8rem;
-    color: var(--iron);
-    letter-spacing: 0.02em;
-  }
-</style>

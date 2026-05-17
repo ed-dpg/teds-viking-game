@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Viking Game · Runestone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="runestone.css">
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script src="vikings.sample.js"></script>
+</head>
+<body class="runestone">
+  <div id="app"></div>
+
+  <script type="text/babel" src="RuneCommon.jsx"></script>
+  <script type="text/babel" src="RuneStart.jsx"></script>
+  <script type="text/babel" src="RuneGame.jsx"></script>
+  <script type="text/babel" src="RuneEnd.jsx"></script>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function shuffle(arr) {
+      const out = [...arr];
+      for (let i = out.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [out[i], out[j]] = [out[j], out[i]];
+      }
+      return out;
+    }
+    const scoreFor = (a) => ({ 1: 100, 2: 50, 3: 25 })[a];
+
+    function pickDistractors(answer, pool, optionCount) {
+      const others = pool.filter((p) => p.id !== answer.id);
+      const same = others.filter((p) => p.category === answer.category);
+      const diff = others.filter((p) => p.category !== answer.category);
+      const need = optionCount - 1;
+      const picked = shuffle(same).slice(0, need);
+      if (picked.length < need) picked.push(...shuffle(diff).slice(0, need - picked.length));
+      return picked;
+    }
+
+    function buildRounds(config, pool) {
+      const answers = shuffle(pool).slice(0, Math.min(config.roundCount, pool.length));
+      return answers.map((answer) => ({
+        answer,
+        options: shuffle([answer, ...pickDistractors(answer, pool, config.optionCount)]),
+        focal: { x: 25 + Math.random() * 50, y: 25 + Math.random() * 50 },
+        attempt: 1,
+        picked: [],
+        result: 'pending',
+        pointsEarned: 0,
+      }));
+    }
+
+    function App() {
+      const manifest = window.VIKINGS;
+      const [phase, setPhase] = useState('start');
+      const [lastConfig, setLastConfig] = useState({ roundCount: 10, optionCount: 4, language: 'english' });
+      const [game, setGame] = useState(null);
+
+      function begin(config) {
+        setLastConfig(config);
+        setGame({ config, rounds: buildRounds(config, manifest), index: 0, totalScore: 0 });
+        setPhase('playing');
+      }
+
+      function handleGuess(option) {
+        setGame((g) => {
+          if (!g) return g;
+          const rounds = g.rounds.map((r, i) => i === g.index ? { ...r, picked: [...r.picked] } : r);
+          const round = rounds[g.index];
+          if (round.result !== 'pending') return g;
+          if (option.id === round.answer.id) {
+            round.pointsEarned = scoreFor(round.attempt);
+            round.result = 'won';
+            return { ...g, rounds, totalScore: g.totalScore + round.pointsEarned };
+          }
+          round.picked = [...round.picked, option.id];
+          if (round.attempt === 3) round.result = 'lost';
+          else round.attempt = round.attempt + 1;
+          return { ...g, rounds };
+        });
+      }
+
+      function handleNext() {
+        if (!game) return;
+        if (game.index + 1 >= game.rounds.length) setPhase('end');
+        else setGame((g) => ({ ...g, index: g.index + 1 }));
+      }
+
+      function playAgain() { setGame(null); setPhase('start'); }
+
+      return (
+        <div className="rune-shell">
+          {phase === 'start' ? (
+            <RuneStartScreen initialConfig={lastConfig} manifestSize={manifest.length} onBegin={begin}/>
+          ) : phase === 'playing' && game ? (
+            <RuneGameScreen
+              round={game.rounds[game.index]}
+              roundNumber={game.index + 1}
+              totalRounds={game.rounds.length}
+              totalScore={game.totalScore}
+              language={game.config.language}
+              onGuess={handleGuess}
+              onNext={handleNext}
+              onExit={playAgain}
+            />
+          ) : phase === 'end' && game ? (
+            <RuneEndScreen rounds={game.rounds} totalScore={game.totalScore} onPlayAgain={playAgain}/>
+          ) : null}
+          <footer style={{
+            textAlign: 'center', marginTop: 24,
+            fontFamily: 'Cinzel, serif', fontSize: 11, letterSpacing: '0.2em',
+            color: 'var(--bone-quiet)', textShadow: 'var(--carve-text-shadow)',
+            textTransform: 'uppercase',
+          }}>Made by Teddy B · All rights reserved</footer>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('app')).render(<App/>);
+  </script>
+</body>
+</html>

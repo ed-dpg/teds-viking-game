@@ -1,0 +1,384 @@
+/* ============================================================
+   Runestone — visual direction for Viking Game
+   Carved-slate background, chiseled depth, moss + blood for state.
+   ============================================================ */
+
+@import url('../../colors_and_type.css');
+
+:root {
+  /* Slate palette */
+  --slate-deep:   #16140f;
+  --slate-dark:   #1a1814;
+  --slate-mid:    #2a2822;
+  --slate-light:  #3a3833;
+  --bone:         #c8c1a8;   /* main text on slate */
+  --bone-dim:     #b2ab94;
+  --bone-quiet:   #6e6850;   /* runic bands, captions */
+
+  /* Existing brand tokens repurposed */
+  --moss:         #4a6741;
+  --moss-bright:  #5a7a4e;
+  --moss-deep:    #324327;
+  --blood:        #8b1f1f;
+  --blood-deep:   #6a1717;
+  --gold:         #c8a44c;
+
+  /* Carved relief shadows */
+  --carved-out: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.7);
+  --carved-in:  inset 0 1px 0 rgba(0,0,0,0.7), inset 0 -1px 0 rgba(255,255,255,0.06);
+  --drop: 0 6px 18px rgba(0,0,0,0.55);
+  --drop-lg: 0 12px 30px rgba(0,0,0,0.7);
+
+  /* Type shadow used everywhere on slate */
+  --carve-text-shadow: 1px 1px 0 rgba(0,0,0,0.6);
+}
+
+/* Slate page bg, with chisel-strike speckle overlay */
+body.runestone {
+  background:
+    radial-gradient(ellipse at 50% 0%, var(--slate-light) 0%, var(--slate-deep) 70%),
+    var(--slate-deep);
+  color: var(--bone);
+  font-family: var(--font-body);
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+}
+body.runestone::before {
+  /* faint chisel-strike speckle, blended over */
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='1' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.7  0 0 0 0 0.7  0 0 0 0 0.6  0 0 0 0.18 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay; opacity: 0.55;
+}
+body.runestone > * { position: relative; z-index: 1; }
+
+/* ============================================================
+   Carved-slate primitives
+   ============================================================ */
+
+/* A panel carved INTO the slate (recessed) — used for content areas */
+.slate-panel {
+  background: linear-gradient(180deg, var(--slate-mid), var(--slate-dark));
+  border-radius: 2px;
+  box-shadow:
+    inset 0 2px 0 rgba(0,0,0,0.7),
+    inset 0 -2px 0 rgba(255,255,255,0.06),
+    var(--drop-lg);
+  padding: 28px 32px 32px;
+  position: relative;
+}
+
+/* A tablet raised OUT of the slate — used for buttons/options */
+.slate-tablet {
+  background: linear-gradient(180deg, #322f29 0%, #1f1d18 100%);
+  color: var(--bone);
+  border-radius: 2px;
+  border: none;
+  padding: 14px 16px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-shadow: var(--carve-text-shadow);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.07),
+    inset 0 -1px 0 rgba(0,0,0,0.7),
+    inset 0 0 0 1px rgba(0,0,0,0.5),
+    0 2px 4px rgba(0,0,0,0.55);
+  cursor: pointer;
+  text-align: left;
+  transition: background 160ms ease, box-shadow 160ms ease, transform 120ms ease, color 160ms ease;
+}
+.slate-tablet:hover:not(:disabled) {
+  background: linear-gradient(180deg, #3a3730 0%, #25221c 100%);
+  color: #e6dfc6;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(0,0,0,0.7),
+    inset 0 0 0 1px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(200,164,76,0.18),
+    0 4px 12px rgba(0,0,0,0.6);
+}
+.slate-tablet:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: var(--carved-in), 0 1px 2px rgba(0,0,0,0.5);
+}
+.slate-tablet:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* Primary CTA — moss carved tablet */
+.slate-tablet--primary {
+  background: linear-gradient(180deg, var(--moss-bright) 0%, var(--moss-deep) 100%);
+  color: #e8dcb8;
+  text-align: center;
+  letter-spacing: 0.14em;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(0,0,0,0.5),
+    0 3px 10px rgba(0,0,0,0.6);
+}
+.slate-tablet--primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #6a8c5a 0%, #3d5230 100%);
+  color: #f4ead0;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -1px 0 rgba(0,0,0,0.5),
+    0 0 0 1px rgba(74,103,65,0.5),
+    0 6px 14px rgba(74,103,65,0.35),
+    0 4px 10px rgba(0,0,0,0.55);
+}
+
+/* Correct & wrong answer states */
+.slate-tablet--correct {
+  background: linear-gradient(180deg, var(--moss-bright) 0%, var(--moss-deep) 100%);
+  color: #e8dcb8;
+  animation: rune-pulse 360ms ease-out;
+}
+.slate-tablet--wrong {
+  background: linear-gradient(180deg, #7a2828 0%, #3a0e0e 100%);
+  color: #e8dcb8;
+  text-decoration: line-through;
+  animation: rune-shake 220ms ease-in-out;
+}
+
+@keyframes rune-pulse {
+  0%   { box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(0,0,0,0.5), 0 0 0 0 rgba(90,122,78,0.7), 0 3px 10px rgba(0,0,0,0.6); }
+  100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(0,0,0,0.5), 0 0 0 14px rgba(90,122,78,0), 0 3px 10px rgba(0,0,0,0.6); }
+}
+@keyframes rune-shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-7px); }
+  60%      { transform: translateX(6px); }
+  80%      { transform: translateX(-3px); }
+}
+@keyframes rune-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes rune-reveal {
+  from { opacity: 0; transform: scale(0.96); filter: blur(2px); }
+  to   { opacity: 1; transform: scale(1);    filter: blur(0); }
+}
+
+/* ============================================================
+   Typography — Cinzel carved into slate
+   ============================================================ */
+.runestone h1, .rune-h1 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 38px; letter-spacing: 0.12em;
+  margin: 0;
+  color: var(--bone);
+  text-shadow:
+    1px 1px 0 rgba(0,0,0,0.7),
+    -1px -1px 0 rgba(255,255,255,0.04);
+}
+.rune-h2 {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 22px; letter-spacing: 0.1em;
+  color: var(--bone); margin: 0;
+  text-shadow: var(--carve-text-shadow);
+}
+.rune-caption {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--bone-quiet);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+.rune-body {
+  color: var(--bone-dim);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+}
+.rune-stat {
+  font-family: var(--font-display);
+  letter-spacing: 0.1em;
+  font-size: 17px;
+  color: var(--bone);
+  text-shadow: var(--carve-text-shadow);
+}
+
+/* ============================================================
+   Image: stone-aperture frame with runic bands
+   ============================================================ */
+.stone-aperture {
+  background: linear-gradient(180deg, var(--slate-mid), var(--slate-dark));
+  padding: 12px 16px 14px;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 2px 0 rgba(0,0,0,0.7),
+    inset 0 -2px 0 rgba(255,255,255,0.06),
+    var(--drop-lg);
+}
+.stone-window {
+  position: relative;
+  width: 100%; aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #000;
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,0.8),
+    inset 0 0 0 3px var(--slate-dark),
+    inset 0 0 0 4px rgba(255,255,255,0.05),
+    inset 0 0 60px rgba(0,0,0,0.55);
+}
+.stone-window img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.stone-window .corner-moss {
+  position: absolute; pointer-events: none;
+  width: 64px; height: 64px;
+  background:
+    radial-gradient(circle at 0% 100%, rgba(74,103,65,0.55), transparent 65%);
+  mix-blend-mode: screen;
+}
+.stone-window .corner-moss.bl { bottom: 0; left: 0; }
+.stone-window .corner-moss.tr { top: 0;    right: 0; transform: scale(-1,-1); }
+.stone-window .vignette {
+  position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 80px rgba(0,0,0,0.6);
+}
+
+.runic-band {
+  font-family: 'Cinzel', serif;     /* fallback to serif for runes */
+  font-size: 13px;
+  letter-spacing: 0.32em;
+  color: var(--bone-quiet);
+  text-align: center;
+  text-shadow: var(--carve-text-shadow);
+  padding: 6px 0;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.runic-band--top { padding: 2px 0 8px; }
+.runic-band--bottom { padding: 8px 0 2px; }
+
+/* ============================================================
+   Header bar — round / score / dots / icon buttons
+   ============================================================ */
+.rune-header {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto;
+  gap: 22px;
+  align-items: center;
+  padding: 4px 4px 0;
+}
+.rune-dots {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.3em;
+  color: var(--moss-bright);
+  text-shadow: var(--carve-text-shadow);
+}
+.icon-tablet {
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, #2a2822 0%, #1a1814 100%);
+  border: none; border-radius: 2px; color: var(--bone);
+  cursor: pointer;
+  box-shadow: var(--carved-out), 0 2px 4px rgba(0,0,0,0.5);
+  transition: color 160ms ease, box-shadow 160ms ease;
+}
+.icon-tablet:hover { color: var(--moss-bright); box-shadow: var(--carved-out), 0 0 0 1px rgba(74,103,65,0.5), 0 2px 4px rgba(0,0,0,0.5); }
+.icon-tablet[aria-pressed="true"] { color: var(--bone-quiet); }
+
+/* ============================================================
+   Result panel — chiseled block with moss left border on win,
+   blood left border on loss
+   ============================================================ */
+.rune-result {
+  position: relative;
+  background: linear-gradient(180deg, #232118, #16140f);
+  padding: 18px 22px;
+  border-left: 4px solid var(--moss);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    inset 0 -1px 0 rgba(0,0,0,0.6),
+    var(--drop);
+  display: grid; gap: 12px;
+  animation: rune-fade-up 260ms ease-out;
+}
+.rune-result--lost { border-left-color: var(--blood); }
+.rune-result .verdict {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 0.12em;
+  color: var(--moss-bright);
+  text-shadow: var(--carve-text-shadow);
+}
+.rune-result--lost .verdict { color: #b33b3b; }
+
+/* ============================================================
+   Layout helpers
+   ============================================================ */
+.rune-shell { max-width: 880px; margin: 0 auto; padding: 36px 24px 60px; display: flex; flex-direction: column; gap: 22px; }
+.rune-grid  { display: grid; grid-template-columns: 360px 1fr; gap: 28px; align-items: start; }
+.rune-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 700px) {
+  .rune-grid { grid-template-columns: 1fr; }
+}
+
+/* Select (start screen) — slate field with chiseled inset */
+.rune-field {
+  display: grid; gap: 6px;
+}
+.rune-field > label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--bone-quiet);
+  text-transform: uppercase;
+  text-shadow: var(--carve-text-shadow);
+}
+.rune-select {
+  appearance: none; -webkit-appearance: none;
+  width: 100%;
+  font-family: var(--font-display);
+  font-size: 16px; letter-spacing: 0.08em;
+  background:
+    linear-gradient(180deg, var(--slate-dark), var(--slate-deep));
+  color: var(--bone);
+  border: none; border-radius: 2px;
+  padding: 12px 36px 12px 14px;
+  box-shadow: var(--carved-in), 0 0 0 1px rgba(0,0,0,0.4);
+  text-shadow: var(--carve-text-shadow);
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='%23c8c1a8' d='M2 4l4 4 4-4z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+.rune-select:focus {
+  outline: none;
+  box-shadow: var(--carved-in), 0 0 0 1px rgba(74,103,65,0.6);
+}
+
+/* End-screen score display */
+.rune-score-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 88px;
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  color: var(--moss-bright);
+  text-shadow:
+    2px 2px 0 rgba(0,0,0,0.7),
+    -1px -1px 0 rgba(255,255,255,0.04),
+    0 0 28px rgba(74,103,65,0.4);
+  animation: rune-reveal 600ms ease-out;
+}
+.rune-skal {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 56px;
+  letter-spacing: 0.18em;
+  color: var(--bone);
+  text-shadow:
+    2px 2px 0 rgba(0,0,0,0.7),
+    -1px -1px 0 rgba(255,255,255,0.06),
+    0 0 16px rgba(74,103,65,0.2);
+  margin: 0 0 4px;
+}

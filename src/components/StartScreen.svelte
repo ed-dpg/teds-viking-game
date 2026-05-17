@@ -19,89 +19,101 @@
 
   let cappedNote = $derived(
     roundCount > manifestSize
-      ? `Only ${manifestSize} items available — that's how many rounds you'll play.`
+      ? `Only ${manifestSize} relics catalogued — that's how many rounds you'll play.`
       : '',
   );
+
+  const RUNES_SHORT = 'ᚱᛏᛒ';
 </script>
 
-<section class="panel start">
-  <h1>Viking Image Guessing Game</h1>
-  <p>Guess the viking object before the image zooms out. Three chances per round.</p>
+<section class="slate-panel start">
+  <div class="runic-band runic-band--top short">{RUNES_SHORT}</div>
 
-  <label>
-    Rounds
-    <select bind:value={roundCount}>
-      <option value={5}>5</option>
-      <option value={10}>10</option>
-      <option value={15}>15</option>
-    </select>
-  </label>
+  <div class="title-block">
+    <h1 class="rune-h1">Viking Image Guessing</h1>
+    <p class="rune-caption subtitle">Three chances per round. Read the stones.</p>
+  </div>
 
-  <label>
-    Answer choices
-    <select bind:value={optionCount}>
-      <option value={3}>3</option>
-      <option value={4}>4</option>
-      <option value={5}>5</option>
-      <option value={6}>6</option>
-    </select>
-  </label>
-
-  <label>
-    Language
-    <select bind:value={language}>
-      <option value="english">English</option>
-      <option value="oldNorse">Old Norse (hard)</option>
-    </select>
-  </label>
+  <div class="field-grid">
+    <div class="rune-field">
+      <label for="rounds">Rounds</label>
+      <select id="rounds" class="rune-select" bind:value={roundCount}>
+        <option value={5}>V · 5</option>
+        <option value={10}>X · 10</option>
+        <option value={15}>XV · 15</option>
+      </select>
+    </div>
+    <div class="rune-field">
+      <label for="choices">Choices</label>
+      <select id="choices" class="rune-select" bind:value={optionCount}>
+        <option value={3}>III · 3</option>
+        <option value={4}>IV · 4</option>
+        <option value={5}>V · 5</option>
+        <option value={6}>VI · 6</option>
+      </select>
+    </div>
+    <div class="rune-field">
+      <label for="tongue">Tongue</label>
+      <select id="tongue" class="rune-select" bind:value={language}>
+        <option value="english">English</option>
+        <option value="oldNorse">Old Norse</option>
+      </select>
+    </div>
+  </div>
 
   {#if cappedNote}
-    <p class="note">{cappedNote}</p>
+    <p class="rune-caption capped-note">{cappedNote}</p>
   {/if}
 
   <button
-    class="primary"
+    class="slate-tablet slate-tablet--primary begin-cta"
     onclick={() => {
       playClick();
       onBegin({ roundCount, optionCount, language });
     }}
   >
-    Begin
+    Begin the saga
   </button>
+
+  <div class="runic-band runic-band--bottom short">{RUNES_SHORT}</div>
 </section>
 
 <style>
   .start {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
+    display: grid;
+    gap: 20px;
   }
-  label {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    font-weight: 600;
+  .runic-band.short {
+    padding: 0;
   }
-  select {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    padding: 0.4em 0.6em;
-    border: 1px solid var(--iron);
-    border-radius: var(--radius);
-    background: white;
-    color: var(--ink);
+  .title-block {
+    text-align: center;
+    display: grid;
+    gap: 8px;
   }
-  .note {
-    color: var(--iron);
+  .subtitle {
+    font-size: 14px;
+    letter-spacing: 0.08em;
+  }
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .capped-note {
     font-style: italic;
-    margin: 0;
+    text-align: center;
   }
-  button.primary {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--ink);
-    font-weight: 700;
-    margin-top: 0.5rem;
+  .begin-cta {
+    font-size: 16px;
+    padding: 16px 24px;
+    justify-self: center;
+    min-width: 220px;
+  }
+  @media (max-width: 540px) {
+    .field-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

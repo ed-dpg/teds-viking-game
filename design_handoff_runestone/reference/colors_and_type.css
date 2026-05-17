@@ -1,0 +1,250 @@
+/* ============================================================
+   Viking Game — Colors & Type
+   Source of truth for the brand. Mirrors src/styles/theme.css
+   from ed-dpg/teds-viking-game, extended with semantic tokens.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* -------- Brand palette (raw) -------- */
+  --bg-wood:      #2b1d12;  /* deep oiled-wood, primary page bg */
+  --bg-parchment: #e8dcb8;  /* aged parchment, cards & buttons */
+  --ink:          #1a120a;  /* near-black brown, body text on parchment */
+  --gold:         #c8a44c;  /* brass/gold, accents + primary CTAs */
+  --iron:         #5a5450;  /* cool grey-brown, secondary/disabled */
+  --blood:        #8b1f1f;  /* oxidised red, wrong answers + errors */
+  --moss:         #4a6741;  /* lichen green, correct answers + success */
+
+  /* -------- Background variants -------- */
+  --bg-wood-deep: #1f140a;  /* outer ring of radial gradient */
+  --bg-wood-up:   #3a2818;  /* inner glow of radial gradient */
+  --bg-page: radial-gradient(ellipse at top, var(--bg-wood-up) 0%, var(--bg-wood-deep) 70%), var(--bg-wood);
+  --bg-parchment-hi: #f0e3bf;  /* button hover lift */
+
+  /* -------- Translucent overlays -------- */
+  --tint-gold-soft:  rgba(200, 164, 76, 0.12);
+  --tint-moss-glow:  rgba(74, 103, 65, 0.6);
+  --tint-blood-glow: rgba(139, 31, 31, 0.55);
+  --tint-ink-50:     rgba(26, 18, 10, 0.5);
+
+  /* -------- Type families -------- */
+  --font-display: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+  --font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* -------- Type scale (semantic) -------- */
+  --h1-size: 2.5rem;     --h1-tracking: 0.02em;  --h1-weight: 600;
+  --h2-size: 1.75rem;    --h2-tracking: 0.02em;  --h2-weight: 600;
+  --h3-size: 1.25rem;    --h3-tracking: 0.04em;  --h3-weight: 600;
+  --display-xl: 4rem;    /* end-of-game score */
+  --body-size: 1rem;     --body-line: 1.5;
+  --small-size: 0.875rem;
+  --caption-size: 0.8rem; --caption-tracking: 0.02em;
+
+  /* -------- Radius -------- */
+  --radius:   6px;          /* canonical */
+  --radius-sm: 4px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+
+  /* -------- Elevation -------- */
+  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.45);
+  --shadow-card-lift: 0 10px 32px rgba(0, 0, 0, 0.55);
+  --shadow-frame: 0 0 0 6px var(--bg-wood), var(--shadow-card); /* wood mat around image */
+  --shadow-pulse-correct: 0 0 0 0 var(--tint-moss-glow);
+  --shadow-pulse-wrong:   0 0 0 0 var(--tint-blood-glow);
+
+  /* -------- Spacing scale (4pt) -------- */
+  --space-1: 0.25rem;   /*  4px */
+  --space-2: 0.5rem;    /*  8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-12: 3rem;     /* 48px */
+
+  /* -------- Motion -------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 120ms;       /* button hover, click feedback */
+  --dur-med:  200ms;       /* shake, banner fade */
+  --dur-slow: 300ms;       /* correct pulse */
+  --dur-zoom: 400ms;       /* image zoom-out between attempts */
+
+  /* -------- Layout -------- */
+  --shell-max:  760px;
+  --shell-pad:  2rem 1rem;
+
+  /* -------- Semantic aliases (use these in components) -------- */
+  --fg-on-dark:      var(--bg-parchment);
+  --fg-on-light:     var(--ink);
+  --fg-muted-dark:   var(--iron);
+  --fg-muted-light:  var(--iron);
+  --accent:          var(--gold);
+  --success:         var(--moss);
+  --danger:          var(--blood);
+  --surface-dark:    var(--bg-wood);
+  --surface-light:   var(--bg-parchment);
+  --border-strong:   var(--gold);
+  --border-subtle:   var(--iron);
+}
+
+/* ============================================================
+   Resets + page defaults
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; min-height: 100vh; }
+
+body {
+  background: var(--bg-page);
+  color: var(--fg-on-dark);
+  font-family: var(--font-body);
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ============================================================
+   Semantic typography (use plain tags OR class)
+   ============================================================ */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: var(--h1-weight);
+  letter-spacing: var(--h1-tracking);
+  font-size: var(--h1-size);
+  margin: 0 0 0.5em;
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: var(--h2-weight);
+  letter-spacing: var(--h2-tracking);
+  font-size: var(--h2-size);
+  margin: 0 0 0.5em;
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: var(--h3-weight);
+  letter-spacing: var(--h3-tracking);
+  font-size: var(--h3-size);
+  text-transform: uppercase;   /* Cinzel sings in small caps */
+  margin: 0 0 0.5em;
+}
+.display {
+  font-family: var(--font-display);
+  font-size: var(--display-xl);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--blood);
+  line-height: 1;
+}
+p { margin: 0 0 0.75em; }
+small, .caption {
+  font-size: var(--caption-size);
+  letter-spacing: var(--caption-tracking);
+  color: var(--fg-muted-dark);
+}
+em { font-style: italic; }
+strong { font-weight: 700; }
+
+/* ============================================================
+   Building blocks
+   ============================================================ */
+.panel {
+  background: var(--surface-light);
+  color: var(--fg-on-light);
+  padding: var(--space-6);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.app-shell {
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding: var(--shell-pad);
+}
+
+/* Buttons — parchment by default, gold for primary CTAs */
+.btn, button.vg-btn {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 0.6em 1.2em;
+  background: var(--bg-parchment);
+  color: var(--ink);
+  transition: transform var(--dur-fast) ease, background var(--dur-fast) ease, border-color var(--dur-fast) ease;
+}
+/* Default hover: light lift on parchment.
+   Variant hovers come below so each variant keeps its own text contrast. */
+.btn:hover:not(:disabled):not(.btn--primary):not(.btn--correct):not(.btn--wrong),
+button.vg-btn:hover:not(:disabled):not(.btn--primary):not(.btn--correct):not(.btn--wrong) {
+  background: var(--bg-parchment-hi);
+  transform: translateY(-1px);
+}
+.btn:disabled,
+button.vg-btn:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.btn--primary {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+  font-weight: 700;
+}
+.btn--primary:hover:not(:disabled) {
+  /* Lighter gold, ink text stays legible */
+  background: #d8b664;
+  border-color: #d8b664;
+  transform: translateY(-1px);
+}
+
+/* answer-state variants */
+.btn--correct {
+  background: var(--moss);
+  color: var(--bg-parchment);
+  border-color: var(--moss);
+  animation: vg-pulse 300ms ease-out;
+}
+.btn--correct:hover:not(:disabled) {
+  /* Deeper moss; parchment text stays legible */
+  background: #3a5333;
+  border-color: #3a5333;
+  transform: translateY(-1px);
+}
+.btn--wrong {
+  background: var(--blood);
+  color: var(--bg-parchment);
+  border-color: var(--blood);
+  text-decoration: line-through;
+  animation: vg-shake 200ms ease-in-out;
+}
+.btn--wrong:hover:not(:disabled) {
+  /* Deeper blood; parchment text stays legible */
+  background: #6a1717;
+  border-color: #6a1717;
+  transform: translateY(-1px);
+}
+
+@keyframes vg-pulse {
+  0%   { box-shadow: 0 0 0 0   var(--tint-moss-glow); }
+  100% { box-shadow: 0 0 0 12px rgba(74, 103, 65, 0); }
+}
+@keyframes vg-shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-6px); }
+  75%      { transform: translateX(6px); }
+}
+
+/* Image frame — the focal element of every round */
+.image-frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #000;
+  border-radius: var(--radius);
+  border: 2px solid var(--gold);
+  box-shadow: var(--shadow-frame);
+}
