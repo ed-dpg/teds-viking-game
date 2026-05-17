@@ -102,12 +102,14 @@
 
   <div class="game-body">
     <div class="image-col">
-      <ZoomedImage
-        src={imageUrl(round.answer)}
-        alt="Zoomed viking item — guess what it is"
-        attempt={round.attempt}
-        focal={round.focal}
-      />
+      {#key round.answer.id}
+        <ZoomedImage
+          src={imageUrl(round.answer)}
+          alt="Zoomed viking item — guess what it is"
+          attempt={round.attempt}
+          focal={round.focal}
+        />
+      {/key}
     </div>
 
     <div class="answer-col">
