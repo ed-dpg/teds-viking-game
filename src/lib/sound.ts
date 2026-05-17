@@ -39,7 +39,37 @@ export function playWrong(): void {
 
 export function playClick(): void {
   if (muted) return;
-  tone(1400, 0.04, 'triangle', 0, 0.06);
+  const c = getCtx();
+  if (!c) return;
+
+  const duration = 0.025;
+  const bufferSize = Math.max(1, Math.floor(c.sampleRate * duration));
+  const buffer = c.createBuffer(1, bufferSize, c.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = Math.random() * 2 - 1;
+  }
+
+  const source = c.createBufferSource();
+  source.buffer = buffer;
+
+  const filter = c.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.frequency.value = 1800;
+  filter.Q.value = 1;
+
+  const gain = c.createGain();
+  const t = c.currentTime;
+  gain.gain.setValueAtTime(0, t);
+  gain.gain.linearRampToValueAtTime(0.18, t + 0.002);
+  gain.gain.exponentialRampToValueAtTime(0.001, t + duration);
+
+  source.connect(filter);
+  filter.connect(gain);
+  gain.connect(c.destination);
+
+  source.start(t);
+  source.stop(t + duration + 0.01);
 }
 
 export function isMuted(): boolean {
