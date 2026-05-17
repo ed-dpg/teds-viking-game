@@ -30,7 +30,7 @@
   <div class="runic-band runic-band--top short">{RUNES_SHORT}</div>
 
   <div class="title-block">
-    <h1 class="rune-h1">Viking Image Guessing</h1>
+    <h1 class="rune-h1">Norse Mysteries</h1>
     <p class="rune-caption subtitle">Three chances per round. Read the stones.</p>
   </div>
 
