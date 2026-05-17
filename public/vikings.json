@@ -1,10 +1,58 @@
 [
-  { "id": "longship",  "name": "Longship",       "image": "longship.svg",  "category": "ship" },
-  { "id": "knarr",     "name": "Knarr",          "image": "knarr.svg",     "category": "ship" },
-  { "id": "drakkar",   "name": "Drakkar",        "image": "drakkar.svg",   "category": "ship" },
-  { "id": "ulfberht",  "name": "Ulfberht Sword", "image": "ulfberht.svg",  "category": "weapon" },
-  { "id": "axe",       "name": "Dane Axe",       "image": "axe.svg",       "category": "weapon" },
-  { "id": "spear",     "name": "Spear",          "image": "spear.svg",     "category": "weapon" },
-  { "id": "helmet",    "name": "Spangenhelm",    "image": "helmet.svg",    "category": "armor" },
-  { "id": "chainmail", "name": "Chainmail Hauberk", "image": "chainmail.svg", "category": "armor" }
+  {
+    "id": "longship",
+    "name": "Longship",
+    "image": "longship.svg",
+    "category": "ship",
+    "description": "A long, narrow warship built for speed under both oar and sail. The shallow draft let viking crews land on beaches and travel up rivers other vessels couldn't reach."
+  },
+  {
+    "id": "knarr",
+    "name": "Knarr",
+    "image": "knarr.svg",
+    "category": "ship",
+    "description": "A broader, deeper cargo ship used for ocean trade. The knarr carried wool, timber, and livestock between Scandinavia, Iceland, and Greenland."
+  },
+  {
+    "id": "drakkar",
+    "name": "Drakkar",
+    "image": "drakkar.svg",
+    "category": "ship",
+    "description": "The largest longships, used by kings and chieftains. Named for the carved dragon heads that adorned their prows during raids."
+  },
+  {
+    "id": "ulfberht",
+    "name": "Ulfberht Sword",
+    "image": "ulfberht.svg",
+    "category": "weapon",
+    "description": "A high-carbon crucible-steel sword forged in the Rhineland, prized far above local ironwork. The +VLFBERHT+ inlay marked an early luxury brand."
+  },
+  {
+    "id": "axe",
+    "name": "Dane Axe",
+    "image": "axe.svg",
+    "category": "weapon",
+    "description": "A two-handed long-hafted axe with a broad, thin blade. Devastating against shield walls and the signature weapon of viking huscarls."
+  },
+  {
+    "id": "spear",
+    "name": "Spear",
+    "image": "spear.svg",
+    "category": "weapon",
+    "description": "The most common viking weapon — cheap, versatile, and effective. Spears were thrown, thrust in formation, or used in single combat with a shield."
+  },
+  {
+    "id": "helmet",
+    "name": "Spangenhelm",
+    "image": "helmet.svg",
+    "category": "armor",
+    "description": "A conical iron helmet built from riveted plates, often with a nasal guard. Despite popular myth, viking helmets had no horns."
+  },
+  {
+    "id": "chainmail",
+    "name": "Chainmail Hauberk",
+    "image": "chainmail.svg",
+    "category": "armor",
+    "description": "A shirt of interlocking iron rings worn over padding. Expensive and labor-intensive, reserved for wealthy warriors and chieftains."
+  }
 ]

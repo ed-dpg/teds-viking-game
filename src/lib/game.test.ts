@@ -46,7 +46,7 @@ describe('scoreFor', () => {
 });
 
 function make(id: string, category: string): VikingThing {
-  return { id, name: id, image: `${id}.svg`, category };
+  return { id, name: id, image: `${id}.svg`, category, description: '' };
 }
 
 describe('pickDistractors', () => {

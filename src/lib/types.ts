@@ -3,6 +3,7 @@ export type VikingThing = {
   name: string;
   image: string;
   category: string;
+  description: string;
 };
 
 export type GameConfig = {

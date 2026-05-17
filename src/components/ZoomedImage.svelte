@@ -33,7 +33,7 @@
   .frame {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 3 / 4;
     overflow: hidden;
     background: #000;
     border-radius: var(--radius);

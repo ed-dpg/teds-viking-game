@@ -42,37 +42,48 @@
     <span class="attempts" aria-label="Attempts used">{attemptDots}</span>
   </header>
 
-  <ZoomedImage
-    src={imageUrl(round.answer)}
-    alt="Zoomed viking item — guess what it is"
-    attempt={round.attempt}
-    focal={round.focal}
-  />
-
-  <div class="options">
-    {#each round.options as option (option.id)}
-      <button
-        class={buttonClass(option)}
-        disabled={isDisabled(option)}
-        onclick={() => onGuess(option)}
-      >
-        {option.name}
-      </button>
-    {/each}
-  </div>
-
-  {#if round.result !== 'pending'}
-    <div class="result panel">
-      {#if round.result === 'won'}
-        <strong>Correct!</strong> +{round.pointsEarned}
-      {:else}
-        <strong>Out of guesses.</strong> It was a <em>{round.answer.name}</em>.
-      {/if}
-      <button class="primary" onclick={onNext}>
-        {roundNumber < totalRounds ? 'Next' : 'See results'}
-      </button>
+  <div class="game-body">
+    <div class="image-col">
+      <ZoomedImage
+        src={imageUrl(round.answer)}
+        alt="Zoomed viking item — guess what it is"
+        attempt={round.attempt}
+        focal={round.focal}
+      />
     </div>
-  {/if}
+
+    <div class="answer-col">
+      <div class="options">
+        {#each round.options as option (option.id)}
+          <button
+            class={buttonClass(option)}
+            disabled={isDisabled(option)}
+            onclick={() => onGuess(option)}
+          >
+            {option.name}
+          </button>
+        {/each}
+      </div>
+
+      {#if round.result !== 'pending'}
+        <div class="result panel">
+          <p class="result-line">
+            {#if round.result === 'won'}
+              <strong>Correct!</strong> +{round.pointsEarned}
+            {:else}
+              <strong>Out of guesses.</strong> It was a <em>{round.answer.name}</em>.
+            {/if}
+          </p>
+          <p class="description">{round.answer.description}</p>
+          <div class="result-actions">
+            <button class="primary" onclick={onNext}>
+              {roundNumber < totalRounds ? 'Next' : 'See results'}
+            </button>
+          </div>
+        </div>
+      {/if}
+    </div>
+  </div>
 </section>
 
 <style>
@@ -93,21 +104,49 @@
     letter-spacing: 0.2em;
     color: var(--gold);
   }
+  .game-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+  @media (max-width: 640px) {
+    .game-body {
+      grid-template-columns: 1fr;
+    }
+  }
+  .answer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
   .options {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
   }
-  @media (max-width: 480px) {
+  @media (max-width: 380px) {
     .options {
       grid-template-columns: 1fr;
     }
   }
   .result {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .result-line {
+    margin: 0;
+  }
+  .description {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .result-actions {
+    display: flex;
+    justify-content: flex-end;
   }
   button.primary {
     background: var(--gold);
