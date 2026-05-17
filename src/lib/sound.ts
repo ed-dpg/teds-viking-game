@@ -37,6 +37,11 @@ export function playWrong(): void {
   tone(146.83, 0.28, 'triangle', 0, 0.14); // D3
 }
 
+export function playClick(): void {
+  if (muted) return;
+  tone(1400, 0.04, 'triangle', 0, 0.06);
+}
+
 export function isMuted(): boolean {
   return muted;
 }

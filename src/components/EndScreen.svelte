@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Round } from '../lib/types';
+  import { playClick } from '../lib/sound';
 
   type Props = {
     rounds: Round[];
@@ -11,6 +12,11 @@
 
   const maxScore = $derived(rounds.length * 100);
   const correctCount = $derived(rounds.filter((r) => r.result === 'won').length);
+
+  function handlePlayAgain() {
+    playClick();
+    onPlayAgain();
+  }
 </script>
 
 <section class="panel end">
@@ -18,7 +24,7 @@
   <p class="score-line">{totalScore} / {maxScore}</p>
   <p>{correctCount} of {rounds.length} correct</p>
 
-  <button class="primary" onclick={onPlayAgain}>Play again</button>
+  <button class="primary" onclick={handlePlayAgain}>Play again</button>
 </section>
 
 <style>

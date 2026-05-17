@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { GameConfig, Language } from '../lib/types';
+  import { playClick } from '../lib/sound';
 
   type Props = {
     initialConfig: GameConfig;
@@ -58,7 +59,13 @@
     <p class="note">{cappedNote}</p>
   {/if}
 
-  <button class="primary" onclick={() => onBegin({ roundCount, optionCount, language })}>
+  <button
+    class="primary"
+    onclick={() => {
+      playClick();
+      onBegin({ roundCount, optionCount, language });
+    }}
+  >
     Begin
   </button>
 </section>

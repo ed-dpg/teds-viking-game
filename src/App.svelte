@@ -2,7 +2,7 @@
   import type { Game, GameConfig, VikingThing } from './lib/types';
   import { buildRounds, scoreFor } from './lib/game';
   import { loadManifest } from './lib/manifest';
-  import { playCorrect, playWrong } from './lib/sound';
+  import { playClick, playCorrect, playWrong } from './lib/sound';
   import StartScreen from './components/StartScreen.svelte';
   import GameScreen from './components/GameScreen.svelte';
   import EndScreen from './components/EndScreen.svelte';
@@ -79,7 +79,7 @@
     <section class="panel">
       <h2>Could not load game</h2>
       <p>{loadError}</p>
-      <button onclick={fetchManifest}>Retry</button>
+      <button onclick={() => { playClick(); fetchManifest(); }}>Retry</button>
     </section>
   {:else if phase === 'start'}
     <StartScreen initialConfig={lastConfig} manifestSize={manifest.length} onBegin={beginGame} />

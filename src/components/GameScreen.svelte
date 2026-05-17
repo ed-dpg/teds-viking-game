@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Language, Round, VikingThing } from '../lib/types';
   import { imageUrl } from '../lib/manifest';
-  import { isMuted, setMuted } from '../lib/sound';
+  import { isMuted, playClick, setMuted } from '../lib/sound';
   import ZoomedImage from './ZoomedImage.svelte';
 
   type Props = {
@@ -22,12 +22,19 @@
   function toggleMute() {
     muted = !muted;
     setMuted(muted);
+    playClick();
   }
 
   function handleExit() {
+    playClick();
     if (confirm('Exit to menu? Your current game will be lost.')) {
       onExit();
     }
+  }
+
+  function handleNext() {
+    playClick();
+    onNext();
   }
 
   function displayName(thing: VikingThing): string {
@@ -129,7 +136,7 @@
           </p>
           <p class="description">{round.answer.description}</p>
           <div class="result-actions">
-            <button class="primary" onclick={onNext}>
+            <button class="primary" onclick={handleNext}>
               {roundNumber < totalRounds ? 'Next' : 'See results'}
             </button>
           </div>
