@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-wood: #2b1d12;
+  --bg-parchment: #e8dcb8;
+  --ink: #1a120a;
+  --gold: #c8a44c;
+  --iron: #5a5450;
+  --blood: #8b1f1f;
+  --moss: #4a6741;
+
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --radius: 6px;
+  --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at top, #3a2818 0%, #1f140a 70%),
+    var(--bg-wood);
+  color: var(--bg-parchment);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.5em;
+}
+
+button {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 0.6em 1.2em;
+  background: var(--bg-parchment);
+  color: var(--ink);
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+button:hover:not(:disabled) {
+  background: #f0e3bf;
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+button.correct {
+  background: var(--moss);
+  color: var(--bg-parchment);
+  border-color: var(--moss);
+  animation: pulse 300ms ease-out;
+}
+
+button.wrong {
+  background: var(--blood);
+  color: var(--bg-parchment);
+  border-color: var(--blood);
+  text-decoration: line-through;
+  animation: shake 200ms ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 103, 65, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(74, 103, 65, 0);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+.panel {
+  background: var(--bg-parchment);
+  color: var(--ink);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.app-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
