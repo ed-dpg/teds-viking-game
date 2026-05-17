@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Round, VikingThing } from '../lib/types';
+  import type { Language, Round, VikingThing } from '../lib/types';
   import { imageUrl } from '../lib/manifest';
   import ZoomedImage from './ZoomedImage.svelte';
 
@@ -8,11 +8,16 @@
     roundNumber: number;
     totalRounds: number;
     totalScore: number;
+    language: Language;
     onGuess: (option: VikingThing) => void;
     onNext: () => void;
   };
 
-  let { round, roundNumber, totalRounds, totalScore, onGuess, onNext }: Props = $props();
+  let { round, roundNumber, totalRounds, totalScore, language, onGuess, onNext }: Props = $props();
+
+  function displayName(thing: VikingThing): string {
+    return language === 'oldNorse' ? thing.oldNorse : thing.name;
+  }
 
   function buttonClass(option: VikingThing): string {
     if (round.result === 'won' && option.id === round.answer.id) return 'correct';
@@ -60,7 +65,7 @@
             disabled={isDisabled(option)}
             onclick={() => onGuess(option)}
           >
-            {option.name}
+            {displayName(option)}
           </button>
         {/each}
       </div>
@@ -70,6 +75,8 @@
           <p class="result-line">
             {#if round.result === 'won'}
               <strong>Correct!</strong> +{round.pointsEarned}
+            {:else if language === 'oldNorse'}
+              <strong>Out of guesses.</strong> It was a <em>{round.answer.oldNorse}</em> ({round.answer.name}).
             {:else}
               <strong>Out of guesses.</strong> It was a <em>{round.answer.name}</em>.
             {/if}

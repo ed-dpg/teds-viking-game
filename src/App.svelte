@@ -11,7 +11,7 @@
   let phase = $state<Phase>('loading');
   let manifest = $state<VikingThing[]>([]);
   let loadError = $state<string>('');
-  let lastConfig = $state<GameConfig>({ roundCount: 10, optionCount: 4 });
+  let lastConfig = $state<GameConfig>({ roundCount: 10, optionCount: 4, language: 'english' });
   let game = $state<Game | null>(null);
 
   async function fetchManifest() {
@@ -86,6 +86,7 @@
       roundNumber={game.index + 1}
       totalRounds={game.rounds.length}
       totalScore={game.totalScore}
+      language={game.config.language}
       onGuess={handleGuess}
       onNext={handleNext}
     />

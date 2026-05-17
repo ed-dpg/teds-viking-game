@@ -46,7 +46,7 @@ describe('scoreFor', () => {
 });
 
 function make(id: string, category: string): VikingThing {
-  return { id, name: id, image: `${id}.svg`, category, description: '' };
+  return { id, name: id, oldNorse: id, image: `${id}.svg`, category, description: '' };
 }
 
 describe('pickDistractors', () => {
@@ -105,37 +105,37 @@ describe('buildRounds', () => {
   ];
 
   it('returns exactly roundCount rounds when manifest is large enough', () => {
-    const rounds = buildRounds({ roundCount: 5, optionCount: 4 }, pool);
+    const rounds = buildRounds({ roundCount: 5, optionCount: 4, language: 'english' }, pool);
     expect(rounds).toHaveLength(5);
   });
 
   it('caps rounds at manifest length when manifest is smaller', () => {
-    const rounds = buildRounds({ roundCount: 20, optionCount: 4 }, pool);
+    const rounds = buildRounds({ roundCount: 20, optionCount: 4, language: 'english' }, pool);
     expect(rounds).toHaveLength(pool.length);
   });
 
   it('has no duplicate answers across rounds', () => {
-    const rounds = buildRounds({ roundCount: 5, optionCount: 4 }, pool);
+    const rounds = buildRounds({ roundCount: 5, optionCount: 4, language: 'english' }, pool);
     const ids = rounds.map((r) => r.answer.id);
     expect(new Set(ids).size).toBe(ids.length);
   });
 
   it('every round options array includes the answer', () => {
-    const rounds = buildRounds({ roundCount: 5, optionCount: 4 }, pool);
+    const rounds = buildRounds({ roundCount: 5, optionCount: 4, language: 'english' }, pool);
     for (const r of rounds) {
       expect(r.options.some((o) => o.id === r.answer.id)).toBe(true);
     }
   });
 
   it('every round has exactly optionCount options', () => {
-    const rounds = buildRounds({ roundCount: 5, optionCount: 4 }, pool);
+    const rounds = buildRounds({ roundCount: 5, optionCount: 4, language: 'english' }, pool);
     for (const r of rounds) {
       expect(r.options).toHaveLength(4);
     }
   });
 
   it('initializes each round with attempt=1, no picks, pending result, zero points', () => {
-    const rounds = buildRounds({ roundCount: 3, optionCount: 4 }, pool);
+    const rounds = buildRounds({ roundCount: 3, optionCount: 4, language: 'english' }, pool);
     for (const r of rounds) {
       expect(r.attempt).toBe(1);
       expect(r.picked).toEqual([]);
@@ -145,7 +145,7 @@ describe('buildRounds', () => {
   });
 
   it('focal points are within 25-75 range', () => {
-    const rounds = buildRounds({ roundCount: 8, optionCount: 4 }, pool);
+    const rounds = buildRounds({ roundCount: 8, optionCount: 4, language: 'english' }, pool);
     for (const r of rounds) {
       expect(r.focal.x).toBeGreaterThanOrEqual(25);
       expect(r.focal.x).toBeLessThanOrEqual(75);

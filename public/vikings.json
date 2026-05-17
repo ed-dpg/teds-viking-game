@@ -2,6 +2,7 @@
   {
     "id": "longship",
     "name": "Longship",
+    "oldNorse": "Langskip",
     "image": "longship.svg",
     "category": "ship",
     "description": "A long, narrow warship built for speed under both oar and sail. The shallow draft let viking crews land on beaches and travel up rivers other vessels couldn't reach."
@@ -9,6 +10,7 @@
   {
     "id": "knarr",
     "name": "Knarr",
+    "oldNorse": "Knǫrr",
     "image": "knarr.svg",
     "category": "ship",
     "description": "A broader, deeper cargo ship used for ocean trade. The knarr carried wool, timber, and livestock between Scandinavia, Iceland, and Greenland."
@@ -16,6 +18,7 @@
   {
     "id": "drakkar",
     "name": "Drakkar",
+    "oldNorse": "Drekar",
     "image": "drakkar.svg",
     "category": "ship",
     "description": "The largest longships, used by kings and chieftains. Named for the carved dragon heads that adorned their prows during raids."
@@ -23,6 +26,7 @@
   {
     "id": "ulfberht",
     "name": "Ulfberht Sword",
+    "oldNorse": "Ulfberht-sverð",
     "image": "ulfberht.svg",
     "category": "weapon",
     "description": "A high-carbon crucible-steel sword forged in the Rhineland, prized far above local ironwork. The +VLFBERHT+ inlay marked an early luxury brand."
@@ -30,6 +34,7 @@
   {
     "id": "axe",
     "name": "Dane Axe",
+    "oldNorse": "Breiðøx",
     "image": "axe.svg",
     "category": "weapon",
     "description": "A two-handed long-hafted axe with a broad, thin blade. Devastating against shield walls and the signature weapon of viking huscarls."
@@ -37,6 +42,7 @@
   {
     "id": "spear",
     "name": "Spear",
+    "oldNorse": "Spjót",
     "image": "spear.svg",
     "category": "weapon",
     "description": "The most common viking weapon — cheap, versatile, and effective. Spears were thrown, thrust in formation, or used in single combat with a shield."
@@ -44,6 +50,7 @@
   {
     "id": "helmet",
     "name": "Spangenhelm",
+    "oldNorse": "Spangahjálmr",
     "image": "helmet.svg",
     "category": "armor",
     "description": "A conical iron helmet built from riveted plates, often with a nasal guard. Despite popular myth, viking helmets had no horns."
@@ -51,6 +58,7 @@
   {
     "id": "chainmail",
     "name": "Chainmail Hauberk",
+    "oldNorse": "Brynja",
     "image": "chainmail.svg",
     "category": "armor",
     "description": "A shirt of interlocking iron rings worn over padding. Expensive and labor-intensive, reserved for wealthy warriors and chieftains."

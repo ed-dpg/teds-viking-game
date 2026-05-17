@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { GameConfig } from '../lib/types';
+  import type { GameConfig, Language } from '../lib/types';
 
   type Props = {
     initialConfig: GameConfig;
@@ -13,6 +13,8 @@
   let roundCount = $state(initialConfig.roundCount);
   // svelte-ignore state_referenced_locally
   let optionCount = $state(initialConfig.optionCount);
+  // svelte-ignore state_referenced_locally
+  let language = $state<Language>(initialConfig.language);
 
   let cappedNote = $derived(
     roundCount > manifestSize
@@ -44,11 +46,19 @@
     </select>
   </label>
 
+  <label>
+    Language
+    <select bind:value={language}>
+      <option value="english">English</option>
+      <option value="oldNorse">Old Norse (hard)</option>
+    </select>
+  </label>
+
   {#if cappedNote}
     <p class="note">{cappedNote}</p>
   {/if}
 
-  <button class="primary" onclick={() => onBegin({ roundCount, optionCount })}>
+  <button class="primary" onclick={() => onBegin({ roundCount, optionCount, language })}>
     Begin
   </button>
 </section>

@@ -1,14 +1,18 @@
 export type VikingThing = {
   id: string;
   name: string;
+  oldNorse: string;
   image: string;
   category: string;
   description: string;
 };
 
+export type Language = 'english' | 'oldNorse';
+
 export type GameConfig = {
   roundCount: number;
   optionCount: number;
+  language: Language;
 };
 
 export type Attempt = 1 | 2 | 3;
