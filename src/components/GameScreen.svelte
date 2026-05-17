@@ -132,11 +132,14 @@
             {#if round.result === 'won'}
               <strong>Correct!</strong> +{round.pointsEarned}
             {:else if language === 'oldNorse'}
-              <strong>Out of guesses.</strong> It was a <em>{round.answer.oldNorse}</em> ({round.answer.name}).
+              <strong>Out of guesses.</strong> It was a <em>{round.answer.oldNorse}</em>.
             {:else}
               <strong>Out of guesses.</strong> It was a <em>{round.answer.name}</em>.
             {/if}
           </p>
+          {#if language === 'oldNorse'}
+            <p class="english-name">{round.answer.name}</p>
+          {/if}
           <p class="description">{round.answer.description}</p>
           <div class="result-actions">
             <button class="primary" onclick={handleNext}>
@@ -220,6 +223,13 @@
   }
   .result-line {
     margin: 0;
+  }
+  .english-name {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
   }
   .description {
     margin: 0;
