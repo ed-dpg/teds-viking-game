@@ -108,6 +108,7 @@
           alt="Zoomed viking item — guess what it is"
           attempt={round.attempt}
           focal={round.focal}
+          revealed={round.result !== 'pending'}
         />
       {/key}
     </div>

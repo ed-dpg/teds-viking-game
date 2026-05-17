@@ -6,12 +6,13 @@
     alt: string;
     attempt: Attempt;
     focal: { x: number; y: number };
+    revealed?: boolean;
   };
 
-  let { src, alt, attempt, focal }: Props = $props();
+  let { src, alt, attempt, focal, revealed = false }: Props = $props();
 
   const zoomByAttempt: Record<Attempt, number> = { 1: 4, 2: 2, 3: 1 };
-  let scale = $derived(zoomByAttempt[attempt]);
+  let scale = $derived(revealed ? 1 : zoomByAttempt[attempt]);
 
   function handleError(e: Event) {
     const img = e.currentTarget as HTMLImageElement;
