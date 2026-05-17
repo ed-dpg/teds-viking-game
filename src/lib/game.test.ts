@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { shuffle } from './game';
+import { shuffle, scoreFor } from './game';
 
 describe('shuffle', () => {
   it('returns an array of the same length', () => {
@@ -29,5 +29,17 @@ describe('shuffle', () => {
     i = 0;
     const b = shuffle([1, 2, 3, 4], rng);
     expect(a).toEqual(b);
+  });
+});
+
+describe('scoreFor', () => {
+  it('returns 100 for attempt 1', () => {
+    expect(scoreFor(1)).toBe(100);
+  });
+  it('returns 50 for attempt 2', () => {
+    expect(scoreFor(2)).toBe(50);
+  });
+  it('returns 25 for attempt 3', () => {
+    expect(scoreFor(3)).toBe(25);
   });
 });
