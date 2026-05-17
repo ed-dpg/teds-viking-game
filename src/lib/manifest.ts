@@ -14,5 +14,5 @@ export async function loadManifest(): Promise<VikingThing[]> {
 }
 
 export function imageUrl(entry: VikingThing): string {
-  return `${import.meta.env.BASE_URL}images/${entry.image}`;
+  return `${import.meta.env.BASE_URL}${entry.image}`;
 }

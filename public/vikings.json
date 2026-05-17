@@ -3,39 +3,55 @@
     "id": "longship",
     "name": "Longship",
     "oldNorse": "Langskip",
-    "image": "longship.svg",
+    "image": "images/sea-stuff/longboat.png",
     "category": "ship",
     "description": "A long, narrow warship built for speed under both oar and sail. The shallow draft let viking crews land on beaches and travel up rivers other vessels couldn't reach."
   },
   {
-    "id": "knarr",
-    "name": "Knarr",
-    "oldNorse": "Knǫrr",
-    "image": "knarr.svg",
+    "id": "dragon-head-prow",
+    "name": "Carved Dragon-Head Prow",
+    "oldNorse": "Drekahǫfuð",
+    "image": "images/sea-stuff/carved-dragon-head-prow.png",
     "category": "ship",
-    "description": "A broader, deeper cargo ship used for ocean trade. The knarr carried wool, timber, and livestock between Scandinavia, Iceland, and Greenland."
+    "description": "An ornately carved dragon or serpent head mounted on a longship's prow. Meant to frighten enemies and ward off hostile spirits, it was often removed when approaching friendly shores."
   },
   {
-    "id": "drakkar",
-    "name": "Drakkar",
-    "oldNorse": "Drekar",
-    "image": "drakkar.svg",
+    "id": "oar",
+    "name": "Wooden Oar",
+    "oldNorse": "Ár",
+    "image": "images/sea-stuff/wooden-oar.png",
     "category": "ship",
-    "description": "The largest longships, used by kings and chieftains. Named for the carved dragon heads that adorned their prows during raids."
+    "description": "A long-bladed pine or spruce oar pulled through ports along a longship's hull. When the wind failed, oar power was what made viking raids possible at all."
+  },
+  {
+    "id": "sun-compass",
+    "name": "Sun Compass",
+    "oldNorse": "Sólarsteinn",
+    "image": "images/sea-stuff/sun-compass.png",
+    "category": "ship",
+    "description": "A wooden disc with a central gnomon used to find true north by the shadow it cast. Combined with sunstones and dead reckoning, it helped viking navigators cross open ocean to Iceland and beyond."
+  },
+  {
+    "id": "anchor-stone",
+    "name": "Anchor Stone",
+    "oldNorse": "Akkerissteinn",
+    "image": "images/sea-stuff/anchor-stone.png",
+    "category": "ship",
+    "description": "A heavy holed stone lashed to a rope and dropped overboard to hold a ship in place. Cheap, replaceable, and effective in the shallow harbours where vikings beached and traded."
   },
   {
     "id": "ulfberht",
     "name": "Ulfberht Sword",
     "oldNorse": "Ulfberht-sverð",
-    "image": "ulfberht.svg",
+    "image": "images/weapons/ulfberht-sword.png",
     "category": "weapon",
     "description": "A high-carbon crucible-steel sword forged in the Rhineland, prized far above local ironwork. The +VLFBERHT+ inlay marked an early luxury brand."
   },
   {
-    "id": "axe",
+    "id": "dane-axe",
     "name": "Dane Axe",
     "oldNorse": "Breiðøx",
-    "image": "axe.svg",
+    "image": "images/weapons/dane-axe.png",
     "category": "weapon",
     "description": "A two-handed long-hafted axe with a broad, thin blade. Devastating against shield walls and the signature weapon of viking huscarls."
   },
@@ -43,15 +59,31 @@
     "id": "spear",
     "name": "Spear",
     "oldNorse": "Spjót",
-    "image": "spear.svg",
+    "image": "images/weapons/spear.png",
     "category": "weapon",
     "description": "The most common viking weapon — cheap, versatile, and effective. Spears were thrown, thrust in formation, or used in single combat with a shield."
   },
   {
-    "id": "helmet",
+    "id": "seax",
+    "name": "Seax Knife",
+    "oldNorse": "Sax",
+    "image": "images/weapons/seax-knife.png",
+    "category": "weapon",
+    "description": "A single-edged utility knife worn by nearly every viking, free or thrall. Used for eating, working leather, and as a sidearm when nothing better was at hand."
+  },
+  {
+    "id": "round-shield",
+    "name": "Round Shield",
+    "oldNorse": "Skjǫldr",
+    "image": "images/weapons/round-sheild.png",
+    "category": "armor",
+    "description": "A round plank shield with an iron boss covering the central handgrip. Light enough to swing offensively, it was the workhorse of the viking shield wall."
+  },
+  {
+    "id": "spangenhelm",
     "name": "Spangenhelm",
     "oldNorse": "Spangahjálmr",
-    "image": "helmet.svg",
+    "image": "images/weapons/spangenhelm.png",
     "category": "armor",
     "description": "A conical iron helmet built from riveted plates, often with a nasal guard. Despite popular myth, viking helmets had no horns."
   },
@@ -59,8 +91,136 @@
     "id": "chainmail",
     "name": "Chainmail Hauberk",
     "oldNorse": "Brynja",
-    "image": "chainmail.svg",
+    "image": "images/weapons/chainmail.png",
     "category": "armor",
     "description": "A shirt of interlocking iron rings worn over padding. Expensive and labor-intensive, reserved for wealthy warriors and chieftains."
+  },
+  {
+    "id": "drinking-horn",
+    "name": "Drinking Horn",
+    "oldNorse": "Drykkjarhorn",
+    "image": "images/domstic-stuff/drinking-horn.png",
+    "category": "domestic",
+    "description": "A polished cattle or aurochs horn used for ale, mead, and ceremonial toasts. Often rimmed with silver or bronze on the cups of wealthy hosts."
+  },
+  {
+    "id": "hnefatafl-board",
+    "name": "Hnefatafl Board",
+    "oldNorse": "Hnefatafl",
+    "image": "images/domstic-stuff/hnefatafl-board.png",
+    "category": "domestic",
+    "description": "A strategy board game of unequal sides: a king and his defenders trying to escape a larger surrounding force. Played across the viking world long before chess arrived."
+  },
+  {
+    "id": "antler-dice",
+    "name": "Antler Dice",
+    "oldNorse": "Teningar",
+    "image": "images/domstic-stuff/antler-dice.png",
+    "category": "domestic",
+    "description": "Small cubes carved from antler or bone with drilled pip dots. Used for gambling games that the sagas warn could end in serious blood feuds."
+  },
+  {
+    "id": "spindle-whorl",
+    "name": "Spindle Whorl",
+    "oldNorse": "Snælda",
+    "image": "images/domstic-stuff/spindle-whorl.png",
+    "category": "domestic",
+    "description": "A weighted stone or clay disc that kept a hand spindle turning while spinning wool into yarn. The endless work of viking women, carried on at every spare moment."
+  },
+  {
+    "id": "soapstone-bowl",
+    "name": "Soapstone Bowl",
+    "oldNorse": "Klébergsskál",
+    "image": "images/domstic-stuff/soapstone-bowl.png",
+    "category": "domestic",
+    "description": "A bowl carved from soft Norwegian soapstone, prized for resisting heat and cracking. A major Norwegian export traded as far as Britain and Ireland."
+  },
+  {
+    "id": "quern-stone",
+    "name": "Quern Stone",
+    "oldNorse": "Kvernsteinn",
+    "image": "images/domstic-stuff/quern-stone.png",
+    "category": "domestic",
+    "description": "A pair of round stones turned by hand to grind barley and rye into flour. Daily grinding produced the bread that fed every viking household."
+  },
+  {
+    "id": "firesteel",
+    "name": "Iron Firesteel and Flint",
+    "oldNorse": "Eldjárn",
+    "image": "images/domstic-stuff/iron-firesteel-and-flint.png",
+    "category": "domestic",
+    "description": "A curved iron striker paired with a flint nodule to throw sparks into tinder. Carried in a pouch by anyone who expected to spend a night away from a hearth."
+  },
+  {
+    "id": "bone-flute",
+    "name": "Bone Flute",
+    "oldNorse": "Beinflauta",
+    "image": "images/domstic-stuff/bone-flute.png",
+    "category": "domestic",
+    "description": "A simple flute cut from a hollow long-bone, usually sheep or goose. Common across viking-age settlements as everyday music for feasts and quiet evenings."
+  },
+  {
+    "id": "fur-lined-coat",
+    "name": "Fur-Lined Coat",
+    "oldNorse": "Skinnkápa",
+    "image": "images/clothing/fur-lined-coat.png",
+    "category": "clothing",
+    "description": "A heavy woollen overcoat lined with fox, bear, or sheepskin. Essential against North Atlantic winters and a visible sign of wealth and trade reach."
+  },
+  {
+    "id": "turn-shoe",
+    "name": "Leather Turn-Shoe",
+    "oldNorse": "Skór",
+    "image": "images/clothing/leather-turn-shoe.png",
+    "category": "clothing",
+    "description": "A soft leather shoe stitched inside-out and then turned right-side-in to hide the seams. The standard footwear of farmer, trader, and raider alike."
+  },
+  {
+    "id": "thors-hammer",
+    "name": "Thor's Hammer Pendant",
+    "oldNorse": "Mjǫllnir",
+    "image": "images/clothing/thors-hammer-pendant.png",
+    "category": "clothing",
+    "description": "A small silver or iron pendant shaped like the hammer of Thor. Worn for protection, and possibly as a pagan answer to the cross as Christianity spread north."
+  },
+  {
+    "id": "glass-beads",
+    "name": "Glass Trading Beads",
+    "oldNorse": "Glerperlur",
+    "image": "images/clothing/glass-trading-beads.png",
+    "category": "clothing",
+    "description": "Colourful glass beads strung between the brooches of a woman's apron-dress. Many came from as far as the Middle East via the Volga trade routes."
+  },
+  {
+    "id": "cloak-brooch",
+    "name": "Cloak Brooch",
+    "oldNorse": "Sylgja",
+    "image": "images/clothing/cloak-brooch.png",
+    "category": "clothing",
+    "description": "A penannular or ring brooch used to pin a heavy wool cloak at the shoulder. Both practical fastener and showpiece, often elaborately decorated."
+  },
+  {
+    "id": "neck-ring",
+    "name": "Silver Neck-Ring (Torc)",
+    "oldNorse": "Hálsbaugr",
+    "image": "images/clothing/silver-neck-ring-torc.png",
+    "category": "clothing",
+    "description": "A twisted silver torc worn around the neck. Both jewellery and portable wealth — pieces could be cut off as hack-silver to pay for goods."
+  },
+  {
+    "id": "bone-comb",
+    "name": "Bone Comb",
+    "oldNorse": "Kambr",
+    "image": "images/clothing/bone-comb.png",
+    "category": "clothing",
+    "description": "A double-sided comb made from riveted antler plates. Combs were a near-universal personal item — the vikings were famously fastidious about their hair and beards."
+  },
+  {
+    "id": "needle-case",
+    "name": "Bone Needle Case",
+    "oldNorse": "Nálarhús",
+    "image": "images/clothing/bone-needle-case.png",
+    "category": "clothing",
+    "description": "A small hollow bone tube used to store iron sewing needles. Often worn on a cord at the belt so a household's most easily lost tools were always to hand."
   }
 ]
