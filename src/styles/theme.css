@@ -371,7 +371,100 @@ body > * { position: relative; z-index: 1; }
   gap: 12px;
 }
 @media (max-width: 700px) {
-  .rune-grid { grid-template-columns: 1fr; }
+  /* Lock the whole game to a single viewport — no scrolling required */
+  .rune-shell {
+    min-height: 100dvh;
+    padding: 10px 12px 12px;
+    gap: 10px;
+    box-sizing: border-box;
+  }
+
+  /* Header: tighter and slightly smaller */
+  .rune-header {
+    gap: 10px;
+    padding: 0;
+  }
+  .rune-stat {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+  }
+  .rune-dots {
+    font-size: 17px;
+    letter-spacing: 0.22em;
+  }
+  .icon-tablet {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Game body: single column, image capped so options + result still fit */
+  .rune-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .stone-aperture {
+    padding: 6px 10px 8px;
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+  .runic-band {
+    font-size: 11px;
+    padding: 2px 0;
+    letter-spacing: 0.28em;
+  }
+  .runic-band--top { padding: 0 0 4px; }
+  .runic-band--bottom { padding: 4px 0 0; }
+
+  /* When the result panel is showing, the image already revealed —
+     shrink the aperture further so the description fits without scroll. */
+  .rune-grid:has(.rune-result) .stone-aperture {
+    max-width: 190px;
+  }
+
+  /* Options: tighter padding + size */
+  .rune-options {
+    gap: 8px;
+  }
+  .slate-tablet {
+    padding: 10px 12px;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+  }
+  .slate-tablet--primary {
+    letter-spacing: 0.12em;
+  }
+
+  /* Hint caption smaller */
+  .rune-caption {
+    font-size: 12px;
+  }
+
+  /* Result panel compact */
+  .rune-result {
+    padding: 12px 14px;
+    gap: 8px;
+  }
+  .rune-result .verdict {
+    font-size: 15px;
+    letter-spacing: 0.1em;
+  }
+  .rune-body {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  /* Footer minimal */
+  .rune-footer {
+    margin-top: 4px;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+  }
+
+  /* slate-panel padding tighter */
+  .slate-panel {
+    padding: 20px 18px 22px;
+  }
 }
 
 /* ============================================================
@@ -444,6 +537,24 @@ body > * { position: relative; z-index: 1; }
   font-weight: 600;
   letter-spacing: 0.06em;
   text-shadow: var(--carve-text-shadow);
+}
+
+/* Mobile end-screen + title scale-down (placed after base rules so it wins) */
+@media (max-width: 700px) {
+  .rune-h1 {
+    font-size: 30px;
+    letter-spacing: 0.08em;
+  }
+  .rune-skal {
+    font-size: 42px;
+    letter-spacing: 0.14em;
+  }
+  .rune-score-display {
+    font-size: 60px;
+  }
+  .rune-score-display .score-max {
+    font-size: 28px;
+  }
 }
 
 /* ============================================================
