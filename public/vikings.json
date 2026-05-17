@@ -1,0 +1,10 @@
+[
+  { "id": "longship",  "name": "Longship",       "image": "longship.svg",  "category": "ship" },
+  { "id": "knarr",     "name": "Knarr",          "image": "knarr.svg",     "category": "ship" },
+  { "id": "drakkar",   "name": "Drakkar",        "image": "drakkar.svg",   "category": "ship" },
+  { "id": "ulfberht",  "name": "Ulfberht Sword", "image": "ulfberht.svg",  "category": "weapon" },
+  { "id": "axe",       "name": "Dane Axe",       "image": "axe.svg",       "category": "weapon" },
+  { "id": "spear",     "name": "Spear",          "image": "spear.svg",     "category": "weapon" },
+  { "id": "helmet",    "name": "Spangenhelm",    "image": "helmet.svg",    "category": "armor" },
+  { "id": "chainmail", "name": "Chainmail Hauberk", "image": "chainmail.svg", "category": "armor" }
+]
