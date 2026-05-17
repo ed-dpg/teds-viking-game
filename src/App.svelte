@@ -2,6 +2,7 @@
   import type { Game, GameConfig, VikingThing } from './lib/types';
   import { buildRounds, scoreFor } from './lib/game';
   import { loadManifest } from './lib/manifest';
+  import { playCorrect, playWrong } from './lib/sound';
   import StartScreen from './components/StartScreen.svelte';
   import GameScreen from './components/GameScreen.svelte';
   import EndScreen from './components/EndScreen.svelte';
@@ -42,6 +43,7 @@
       round.pointsEarned = scoreFor(round.attempt);
       round.result = 'won';
       game.totalScore += round.pointsEarned;
+      playCorrect();
     } else {
       round.picked = [...round.picked, option.id];
       if (round.attempt === 3) {
@@ -49,6 +51,7 @@
       } else {
         round.attempt = (round.attempt + 1) as 1 | 2 | 3;
       }
+      playWrong();
     }
   }
 

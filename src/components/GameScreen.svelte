@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Language, Round, VikingThing } from '../lib/types';
   import { imageUrl } from '../lib/manifest';
+  import { isMuted, setMuted } from '../lib/sound';
   import ZoomedImage from './ZoomedImage.svelte';
 
   type Props = {
@@ -14,6 +15,13 @@
   };
 
   let { round, roundNumber, totalRounds, totalScore, language, onGuess, onNext }: Props = $props();
+
+  let muted = $state(isMuted());
+
+  function toggleMute() {
+    muted = !muted;
+    setMuted(muted);
+  }
 
   function displayName(thing: VikingThing): string {
     return language === 'oldNorse' ? thing.oldNorse : thing.name;
@@ -45,6 +53,29 @@
     <span class="counter">Round {roundNumber} / {totalRounds}</span>
     <span class="score">Score: {totalScore}</span>
     <span class="attempts" aria-label="Attempts used">{attemptDots}</span>
+    <button
+      type="button"
+      class="mute"
+      aria-label={muted ? 'Unmute sound' : 'Mute sound'}
+      aria-pressed={muted}
+      onclick={toggleMute}
+    >
+      {#if muted}
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.59 3L19 9.41 17.59 8 15 10.59 12.41 8 11 9.41 13.59 12 11 14.59 12.41 16 15 13.41 17.59 16 19 14.59 16.59 12z"
+          />
+        </svg>
+      {:else}
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.05c1.48-.71 2.5-2.22 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"
+          />
+        </svg>
+      {/if}
+    </button>
   </header>
 
   <div class="game-body">
@@ -110,6 +141,26 @@
   .attempts {
     letter-spacing: 0.2em;
     color: var(--gold);
+  }
+  button.mute {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    color: var(--bg-parchment);
+    line-height: 0;
+  }
+  button.mute:hover:not(:disabled) {
+    background: transparent;
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: none;
+  }
+  button.mute[aria-pressed='true'] {
+    color: var(--iron);
   }
   .game-body {
     display: grid;
