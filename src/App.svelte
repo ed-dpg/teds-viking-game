@@ -97,4 +97,16 @@
   {:else if phase === 'end' && game}
     <EndScreen rounds={game.rounds} totalScore={game.totalScore} onPlayAgain={playAgain} />
   {/if}
+
+  <footer>Made by Teddy B. All rights reserved.</footer>
 </div>
+
+<style>
+  footer {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--iron);
+    letter-spacing: 0.02em;
+  }
+</style>
